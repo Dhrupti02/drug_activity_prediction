@@ -1,0 +1,4 @@
+outs:
+- md5: 79946675d5cbedde7626f66aeb83bf18
+  size: 4289437
+  path: train.dat
