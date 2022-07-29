@@ -1,0 +1,35 @@
+base:
+  project: DrugActivityPrediction-project
+  random_state: 42
+  n_components: 100
+  target_col: status
+
+data_source:
+  source: data_given/train.dat
+
+load_data:
+  raw_dataset_csv: data/raw/train.csv
+  train_labels: data/processed/train_labels.txt
+
+preprocessed_data:
+  preprocessed_data_csv: data/processed/processed_Train.csv
+
+split_data:
+  train_path: data/processed/train_data.csv
+  test_path: data/processed/test_data.csv
+  test_size: 0.2
+
+estimators:
+  AdaBoostClassifier:
+    params:
+      n_estimators: 200
+      learning_rate: 0.1
+      random_state: 1
+    
+model_dir: saved_models
+
+reports:
+  params: report/params.json
+  scores: report/scores.json
+
+webapp_model_dir: prediction_service/model/model.joblib
