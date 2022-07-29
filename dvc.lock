@@ -16,3 +16,16 @@ stages:
     - path: data/raw/train.csv
       md5: 0f7667d1f5f5a664f9ced2e63119919c
       size: 160589691
+  preprocessed_data:
+    cmd: python src/data_preprocessing.py --config=params.yaml
+    deps:
+    - path: data/raw/train.csv
+      md5: 0f7667d1f5f5a664f9ced2e63119919c
+      size: 160589691
+    - path: src/data_preprocessing.py
+      md5: 5a1131c4d9f8d312a7b5b88202a625ed
+      size: 914
+    outs:
+    - path: data/processed/processed_Train.csv
+      md5: 90702382399d01aab3bec80b694e3e06
+      size: 1588688

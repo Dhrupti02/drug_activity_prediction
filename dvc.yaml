@@ -7,3 +7,11 @@ stages:
     - data_given/train.dat
     outs:
     - data/raw/train.csv
+    
+  preprocessed_data:
+    cmd: python src/data_preprocessing.py --config=params.yaml
+    deps:
+    - src/data_preprocessing.py
+    - data/raw/train.csv
+    outs:
+    - data/processed/processed_Train.csv
