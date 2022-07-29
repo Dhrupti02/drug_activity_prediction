@@ -1,3 +1,5 @@
 dvc
 sklearn
 pandas 
+pytest
+tox
