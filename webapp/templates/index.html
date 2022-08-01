@@ -56,8 +56,8 @@ DrugActivityPrediction
                                 </blockquote>
 
                             </label>
-                            <textarea readonly class="form-control" id="exTextarea" rows="5">Predicted file is downloaded!</textarea>
-                            
+                            <textarea readonly class="form-control" id="exTextarea" rows="5">{{ response }}</textarea>
+                            <a class="btn btn-success" href="{{url_for('download')}}">Download</a>
                         </div>
                     </form>
                 </div>

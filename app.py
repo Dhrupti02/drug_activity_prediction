@@ -70,12 +70,19 @@ def success():
         pca_data = pd.DataFrame(PCA_projected_train)
         response = predict(pca_data)
         pca_data['predicted'] = response 
-        pca_data.to_csv('predicted.csv')
-        path = 'predicted.csv'
-        # /return render_template("index.html", response=pca_data)
-        return send_file(path, as_attachment=True)
+        pca_data.to_csv('predicted_data/predicted.csv')
+        # path = 'predicted_data/predicted.csv'
+        return render_template("index.html", response='download predicted file')
+        # return send_file(path, as_attachment=True)
     else:
          return render_template("index.html")
+
+@app.route('/download')
+def download():
+    path = 'predicted_data/predicted.csv'
+    # /return render_template("index.html", response=pca_data)
+    return send_file(path, as_attachment=True)
+
 
 if __name__=="__main__":
     app.run(debug=True)
