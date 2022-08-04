@@ -3,8 +3,11 @@ import argparse
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, classification_report
 from sklearn.ensemble import AdaBoostClassifier
+
+# calculates precision for 1:1:100 dataset with 50tp,20fp, 99tp,51fp
+
 
 import json
 import os
@@ -19,7 +22,9 @@ def eval_metrics(actual, pred):
     mae = mean_absolute_error(actual, pred)
     r2 = r2_score(actual, pred)
     ac = accuracy_score(actual, pred)
-    return rmse, mae, ac
+    precision = precision_score(actual, pred, labels=[1,2], average='micro')
+    recall = recall_score(actual, pred, average='binary')
+    return rmse, mae, ac, precision, recall
 
 
 def train_and_evaluate(config_path):
@@ -51,11 +56,12 @@ def train_and_evaluate(config_path):
     ADB_model.fit(train_x,train_y)
     y_pred_ada=ADB_model.predict(test_x)
     
-    
-    (rmse, mae, ac) = eval_metrics(test_y, y_pred_ada)
+    (rmse, mae, ac, precision, recall) = eval_metrics(test_y, y_pred_ada)
     logger.info('> RMSE: %.2f' % rmse)
     logger.info('> MAE: %.2f' % mae)
     logger.info('> Accuracy: %.2f' % ac)
+    logger.info('> Precision: %.2f' % precision)
+    logger.info('> Recall: %.2f' % recall)
 
 
     scores_file = config["reports"]["scores"]

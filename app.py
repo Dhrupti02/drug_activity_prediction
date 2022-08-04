@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for, send_file
+from flask import Flask, render_template, request, jsonify, redirect, url_for, send_file, flash
 import os
 import yaml
 import joblib
@@ -36,12 +36,12 @@ def predict(data):
 
     return prediction
 
-# logger = logging.getLogger("predict")
-# handler  = logging.StreamHandler()
-# handler.setFormatter(logging.Formatter("%(asctime)s|%(levelname)s|%(name)s|%(message)s"))
-# logger.addHandler(handler)
-# logger.setLevel(logging.DEBUG)
-# logger.setLevel(logging.INFO)
+logger = logging.getLogger("predict")
+handler  = logging.StreamHandler()
+handler.setFormatter(logging.Formatter("%(asctime)s|%(levelname)s|%(name)s|%(message)s"))
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 save_path = 'data_given/'
 app.config['UPLOAD_FOLDER'] = save_path
 @app.route('/', methods = ["GET","POST"])  
@@ -69,9 +69,11 @@ def success():
         PCA_projected_train = pca.transform(data)
         pca_data = pd.DataFrame(PCA_projected_train)
         response = predict(pca_data)
-        pca_data['predicted'] = response 
+        pca_data.insert(loc=0, column='Predicted_labels', value=response)
+        # pca_data['predicted'] = response 
         pca_data.to_csv('predicted_data/predicted.csv')
         # path = 'predicted_data/predicted.csv'
+       
         return render_template("index.html", response='download predicted file')
         # return send_file(path, as_attachment=True)
     else:
