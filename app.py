@@ -1,11 +1,9 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for, send_file, flash
+from flask import Flask, render_template, request, send_file, flash
 import os
 import yaml
 import joblib
 import numpy as np
-import json
 import logging
-import argparse
 from werkzeug.utils import secure_filename
 
 from src.get_data import get_data
@@ -28,7 +26,6 @@ def read_params(config_path):
 
 
 def predict(data):
-    logger = logging.getLogger("predict")
     config = read_params(params_path)
     model_dir_path = config["webapp_model_dir"]
     model = joblib.load(model_dir_path)
@@ -37,12 +34,6 @@ def predict(data):
 
     return prediction
 
-logger = logging.getLogger("predict")
-handler  = logging.StreamHandler()
-handler.setFormatter(logging.Formatter("%(asctime)s|%(levelname)s|%(name)s|%(message)s"))
-logger.addHandler(handler)
-logger.setLevel(logging.DEBUG)
-logger.setLevel(logging.INFO)
 save_path = 'data_given/'
 app.config['UPLOAD_FOLDER'] = save_path
 @app.route('/', methods = ["GET","POST"])  
@@ -71,7 +62,6 @@ def success():
         pca_data = pd.DataFrame(PCA_projected_train)
         response = predict(pca_data)
         pca_data.insert(loc=0, column='Predicted_labels', value=response)
-        # pca_data['predicted'] = response 
         pca_data.to_csv('predicted_data/predicted.csv')
         flash('Download predicted data!')
         return render_template("index.html")
