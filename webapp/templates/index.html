@@ -22,17 +22,11 @@ DrugActivityPrediction
                 <h3>Predict drug activity status </h3>
                 <div class="col">
                     <form action = "/" method = "post" enctype="multipart/form-data">  
-                        <!--<div class="file-input">
-                            <input type="file" id="file-upload" class="file" name="file">
-                            <label for="file-upload">Select file</label>
-
-                          </div><div id="file-upload-filename"></div>
-                        <input type = "submit" value="Upload">  -->
                         <div class="form-group">
                             <div class="input-group">
                               <input type="text" class="form-control" readonly>
                             <div class="input-group-btn">
-                              <span class="fileUpload btn btn-success">
+                              <span class="fileUpload btn btn-success bt">
                                   <span class="upl" id="upload">Upload</span>
                                   <input type="file" class="upload up" name = 'file' id="up" onchange="readURL(this);" />
                                 </span><!-- btn-orange -->
@@ -50,21 +44,17 @@ DrugActivityPrediction
                              </div><!-- form-group -->
                     </form>  
                     <!-- Translated text returned by the Translate API is rendered here. -->
-                </div>
-                <div class="col">
-                    <form>
-                        <div class="form-group">
-                          <!--  <label for="translation-result">
-
-                                <blockquote class="blockquote">
-                                    <p class="mb-2">Prediction:</p>
-                                </blockquote>
-
-                            </label>-->
-                            <h4>{{ response }}</h4>
-                            <a class="btn btn-success" href="{{url_for('download')}}">Download</a>
-                        </div>
-                    </form>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <p class=flashes>
+                            {% for message in messages %}
+                            <h2>{{ message }}</h2>
+                            {% endfor %}
+                            </p>
+                            <a class="btn btn-success bd" href="{{url_for('download')}}">Download</a>
+                        {% endif %}
+                        {% endwith %}
+                        
                 </div>
             </div>
         </div>

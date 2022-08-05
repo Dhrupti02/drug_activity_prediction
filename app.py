@@ -19,6 +19,7 @@ static_dir = os.path.join(webapp_root, "static")
 template_dir = os.path.join(webapp_root, "templates")
 
 app = Flask(__name__, static_folder = static_dir, template_folder = template_dir)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 def read_params(config_path):
     with open(config_path) as yaml_file:
@@ -72,17 +73,14 @@ def success():
         pca_data.insert(loc=0, column='Predicted_labels', value=response)
         # pca_data['predicted'] = response 
         pca_data.to_csv('predicted_data/predicted.csv')
-        # path = 'predicted_data/predicted.csv'
-       
-        return render_template("index.html", response='download predicted file')
-        # return send_file(path, as_attachment=True)
+        flash('Download predicted data!')
+        return render_template("index.html")
     else:
          return render_template("index.html")
 
 @app.route('/download')
 def download():
     path = 'predicted_data/predicted.csv'
-    # /return render_template("index.html", response=pca_data)
     return send_file(path, as_attachment=True)
 
 

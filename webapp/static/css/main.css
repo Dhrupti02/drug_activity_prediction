@@ -1,5 +1,5 @@
  body {
-    background-image: url("dna-g68e7cee9c_1920.jpg");
+    background-image: url("24093.jpg");
 } 
 .col{
   margin-top: 5%;
@@ -7,7 +7,7 @@
 }
 .bg-img {
     /* The image used */
-    background-image: url("dna-g68e7cee9c_1920.jpg");
+    background-image: url("24093.jpg");
   
     min-height: 740px;
   
@@ -19,37 +19,8 @@
     /* Needed to position the navbar */
     position: relative;
   }
-/*.file {
-    opacity: 0;
-    width: 0.1px;
-    height: 0.1px;
   
-  }
-  .file-input label {
-    display: block;
-    position: relative;
-    width: 200px;
-    height: 50px;
-    border-radius: 25px;
-    background: linear-gradient(40deg, #ff6ec4, #7873f5);
-    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform .2s ease-out;
-  }
-  input:hover + label,
-  input:focus + label {
-    transform: scale(1.02);
-  }
-  input:focus + label {
-    outline: 1px solid #000;
-    outline: -webkit-focus-ring-color auto 2px;
-  }*/
-  h1 {
+h1 {
     text-align: center;
     color: white;
     font-size: 3em;
@@ -57,36 +28,31 @@
     font-family: Arial, Helvetica, sans-serif;
     position: absolute;
     margin-top: 8%; 
-    right: 50%;
+    right: 35%;
     transform: translate(50%,-50%);
     text-transform: uppercase;
     font-family: verdana;
     font-weight: 600;
     color: #f5f5f5;
-    text-shadow: 1px 1px 1px #919191,
-        1px 2px 1px #919191,
-        1px 3px 1px #919191,
-        1px 4px 1px #919191,
-        1px 5px 1px #919191,
-        1px 6px 1px #919191,
-        1px 7px 1px #919191,
-        1px 8px 1px #919191,
-        1px 9px 1px #919191,
-        1px 10px 1px #919191,
-    1px 18px 6px rgba(16,16,16,0.4),
-    1px 22px 10px rgba(16,16,16,0.2),
-    1px 25px 35px rgba(16,16,16,0.2),
-    1px 30px 60px rgba(16,16,16,0.4);
+    text-shadow: 2px 2px #407ebc;
     width: 60%;
 }
 h3 {
   text-align: center;
-  color: white;
+  color: antiquewhite;
   font-size: 30px;
   margin-top: 20%;
   transition: 0.5s;
-  margin-left: 35%;
-  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 50%;
+  font-family: inherit;
+}
+h2 {
+  text-align: center;
+  color: antiquewhite;
+  font-size: 40px;
+  margin-left: -10%;
+  transition: 0.5s;
+  font-family: inherit;
 }
 h4 {
   text-align: center;
@@ -98,20 +64,31 @@ h4 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.btn-success {
-  color: #fff;
-  background-color: #28a745;
+.bt {
+  background-color: steelblue;
   border-color: #28a745;
-  margin-left: 15%;
+  margin-left: 0;
 }
-.it .btn-orange
-{
-  background-color: blue;
-  border-color: #777!important;
-  color: #777;
-  text-align: left;
-  width:50%;
+
+.btn-primary {
+  color: #fff;
+  background-color: #064077;
+  border-color: aquamarine;
 }
+
+.bd {
+  color: #fff;
+  background-color: #307cc5;
+  border-color: #28a745;
+  margin-left: 35%;
+}
+
+.mb-2, .my-2 {
+  margin-bottom: .5rem!important;
+  margin-left: 20%;
+  margin-top: 10%;
+}
+
 .it input.form-control
 {
   border:none;
@@ -120,7 +97,7 @@ h4 {
   border-bottom: 1px solid #ddd;
   box-shadow: none;
 }
-.it .form-control:focus
+.form-control:focus
 {
   border-color: #ff4d0d;
   box-shadow: none;
@@ -183,7 +160,7 @@ h4 {
 
 .form-group {
   margin-bottom: 1rem;
-  margin-left: -12%;
+  margin-left: 20%;
 }
 
 .input-group {
