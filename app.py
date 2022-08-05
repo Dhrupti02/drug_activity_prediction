@@ -47,7 +47,7 @@ save_path = 'data_given/'
 app.config['UPLOAD_FOLDER'] = save_path
 @app.route('/', methods = ["GET","POST"])  
 def success():  
-    if request.method == 'POST':  
+    
         f = request.files['file']   
         filename = secure_filename(f.filename) 
         f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -75,8 +75,7 @@ def success():
         pca_data.to_csv('predicted_data/predicted.csv')
         flash('Download predicted data!')
         return render_template("index.html")
-    else:
-         return render_template("index.html")
+    
 
 @app.route('/download')
 def download():
