@@ -3,8 +3,10 @@ import argparse
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-from sklearn.metrics import accuracy_score, precision_score, recall_score, classification_report
+from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
 from sklearn.ensemble import AdaBoostClassifier
+
+
 
 # calculates precision for 1:1:100 dataset with 50tp,20fp, 99tp,51fp
 
@@ -55,13 +57,16 @@ def train_and_evaluate(config_path):
     ADB_model=AdaBoostClassifier(n_estimators = n_estimators, learning_rate = learning_rate)
     ADB_model.fit(train_x,train_y)
     y_pred_ada=ADB_model.predict(test_x)
-    
+    pred_prob1 = ADB_model.predict_proba(test_x)
+    auc_score1 = roc_auc_score(test_y, pred_prob1[:,1])
+
     (rmse, mae, ac, precision, recall) = eval_metrics(test_y, y_pred_ada)
     logger.info('> RMSE: %.2f' % rmse)
     logger.info('> MAE: %.2f' % mae)
     logger.info('> Accuracy: %.2f' % ac)
     logger.info('> Precision: %.2f' % precision)
     logger.info('> Recall: %.2f' % recall)
+    logger.info('> AUC: %.2f' % auc_score1)
 
 
     scores_file = config["reports"]["scores"]
