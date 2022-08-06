@@ -2,7 +2,7 @@ from get_data import read_params
 import argparse
 import pandas as pd
 import numpy as np
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
 from sklearn.ensemble import AdaBoostClassifier
 
