@@ -2,7 +2,7 @@ from get_data import read_params
 import argparse
 import pandas as pd
 import numpy as np
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
 from sklearn.ensemble import AdaBoostClassifier
 
@@ -22,7 +22,6 @@ import logging
 def eval_metrics(actual, pred):
     rmse = np.sqrt(mean_squared_error(actual, pred))
     mae = mean_absolute_error(actual, pred)
-    r2 = r2_score(actual, pred)
     ac = accuracy_score(actual, pred)
     precision = precision_score(actual, pred, labels=[1,2], average='micro')
     recall = recall_score(actual, pred, average='binary')
